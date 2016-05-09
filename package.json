@@ -1,0 +1,44 @@
+{
+  "name": "scrollnav",
+  "version": "1.0.0",
+  "description": "A sub navigation component generated from page content.",
+  "main": "dist/scroll-nav.js",
+  "watch": {
+    "htmlmin": "src/index.html"
+  },
+  "scripts": {
+    "test": "karma start",
+    "browserify": "browserify src/index.js --standalone Scrollnav | derequire | uglifyjs -mc > dist/scroll-nav.js",
+    "watchify": "watchify src/index.js -o dist/scroll-nav.js -dv",
+    "build": "npm run browserify",
+    "inspect": "browserify --full-paths src/index.js | uglifyjs -mc | Discify --open"
+  },
+  "author": "Roy Hewitt @r0yhewitt",
+  "license": "SAX-PD",
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "chai": "^3.4.1",
+    "derequire": "^2.0.3",
+    "disc": "^1.3.2",
+    "karma": "^0.13.19",
+    "karma-browserify": "^5.0.0",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-mocha": "^0.2.1",
+    "karma-mocha-reporter": "^1.1.5",
+    "karma-safari-launcher": "^0.1.1",
+    "mocha": "^2.3.4",
+    "npm-watch": "^0.1.1",
+    "rimraf": "^2.5.1",
+    "uglifyjs": "^2.4.10",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "is-dom": "^1.0.5",
+    "lodash.debounce": "^4.0.3",
+    "lodash.defaults": "^4.0.0",
+    "lodash.foreach": "^4.0.0",
+    "underscore.string": "^3.3.4",
+    "zenscroll": "^3.0.1"
+  }
+}
