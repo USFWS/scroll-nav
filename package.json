@@ -1,5 +1,5 @@
 {
-  "name": "scrollnav",
+  "name": "fws-scrollnav",
   "version": "1.0.0",
   "description": "A sub navigation component generated from page content.",
   "main": "dist/scroll-nav.js",
@@ -14,7 +14,7 @@
     "inspect": "browserify --full-paths src/index.js | uglifyjs -mc | Discify --open"
   },
   "author": "Roy Hewitt @r0yhewitt",
-  "license": "SAX-PD",
+  "license": "MIT",
   "devDependencies": {
     "browserify": "^13.0.0",
     "chai": "^3.4.1",
