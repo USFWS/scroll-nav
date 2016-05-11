@@ -8,6 +8,7 @@
   var options = {};
 
   var defaults = {
+    baseClass: 'scroll-nav',
     headingTag: 'h2',
     content: document.body,
     target: document.body,
@@ -19,7 +20,7 @@
   function init(opts) {
     options = _.defaults(options, opts, defaults);
     failFast(options);
-    options.nav = document.createElement('ol');
+    options.nav = _.create('ol', options.baseClass);
     options.headings = options.content.querySelectorAll(options.headingTag);
     generateNav();
     registerHandlers();
