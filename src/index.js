@@ -27,6 +27,7 @@
 
   function init(opts) {
     S.settings = _.defaults({}, opts, defaults);
+    zenscroll.setup(1000, S.settings.scrollOffset);
     setBodyClass('loading');
     if ( !_.isDom(S.settings.container))
       S.settings.container = document.querySelector(S.settings.container);
