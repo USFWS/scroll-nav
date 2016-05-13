@@ -40,7 +40,7 @@
     "lodash.filter": "^4.3.0",
     "lodash.foreach": "^4.0.0",
     "lodash.isarray": "^4.0.0",
-    "underscore.string": "^3.3.4",
-    "zenscroll": "^3.0.1"
+    "scroll-to-element": "^2.0.0",
+    "underscore.string": "^3.3.4"
   }
 }

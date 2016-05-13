@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var zenscroll = require('zenscroll');
+  var scrollToElement = require('scroll-to-element');
   var _ = require('./util');
 
   var S = {
@@ -27,7 +27,6 @@
 
   function init(opts) {
     S.settings = _.defaults({}, opts, defaults);
-    zenscroll.setup(1000, S.settings.scrollOffset);
     setBodyClass('loading');
     if ( !_.isDom(S.settings.container))
       S.settings.container = document.querySelector(S.settings.container);
@@ -35,7 +34,6 @@
       throw new Error('Could not find the content container.  Make sure you passed in a valid Dom node or CSS selector.');
     findSections(S.settings.container);
     setupSections(S.sections.raw);
-    // tearDownSections(S.sections.data);
     setupNav(S.sections.data);
     insertNav();
     setupPos();
@@ -46,11 +44,14 @@
   function registerHandlers() {
     window.addEventListener('scroll', _.debounce(checkPos, S.settings.debounceTimer));
     window.addEventListener('resize', resizeHandler);
+    S.nav.addEventListener('click', scrollToSection);
   }
 
   function removeHandlers() {
     window.removeEventListener('scroll', _.debounce(checkPos, S.settings.debounceTimer));
     window.removeEventListener('resize', resizeHandler);
+    S.nav.removeEventListener('click', scrollToSection);
+    tearDownSections(S.sections.data);
   }
 
   function resizeHandler() {
@@ -58,6 +59,15 @@
       setupPos();
       checkPos();
     }, S.settings.debounceTimer);
+  }
+
+  function scrollToSection(e) {
+    if (e.target.nodeName === 'A') {
+      var scrollTarget = e.target.getAttribute('href');
+      scrollToElement(scrollTarget, {
+        offset: -45
+      });
+    }
   }
 
   function checkPos() {
