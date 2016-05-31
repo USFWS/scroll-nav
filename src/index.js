@@ -32,6 +32,10 @@
       S.settings.container = document.querySelector(S.settings.container);
     if (S.settings.container === null || typeof S.settings.container === 'string')
       throw new Error('Could not find the content container.  Make sure you passed in a valid Dom node or CSS selector.');
+    if (document.querySelector(S.settings.sections).length === 0) {
+      console.warn('Could not find any ' + S.settings.sections + ' tags in the content area.');
+      return;
+    }
     findSections(S.settings.container);
     setupSections(S.sections.raw);
     setupNav(S.sections.data);
