@@ -27,7 +27,6 @@
 
   function init(opts) {
     S.settings = _.defaults({}, opts, defaults);
-    setBodyClass('loading');
     if ( !_.isDom(S.settings.container))
       S.settings.container = document.querySelector(S.settings.container);
     if (S.settings.container === null || typeof S.settings.container === 'string')
@@ -89,7 +88,9 @@
     else _.removeClass(S.nav, 'fixed');
 
     var inView = function(section) {
-      return (section.topOffset >= boundryTop && section.topOffset <= boundryBottom) || (section.bottomOffset > boundryTop && section.bottomOffset < boundryBottom) || (section.topOffset < boundryTop && section.bottomOffset > boundryBottom);
+      return (section.topOffset >= boundryTop && section.topOffset <= boundryBottom) ||
+      (section.bottomOffset > boundryTop && section.bottomOffset < boundryBottom) ||
+      (section.topOffset < boundryTop && section.bottomOffset > boundryBottom);
     };
 
     _.each(S.sections.data, function(section) {
@@ -278,16 +279,14 @@
         var heading = _.filter(section, function (el) {
           return el.nodeName === S.settings.sections.toUpperCase();
         });
-        if (heading.length === 1)
-          return heading[0].innerHTML;
-        else
-          console.error('Found more than one heading in this section');
+        if (heading.length === 1) return heading[0].innerHTML;
+        else console.error('Found more than one heading in this section');
       }
 
       _.each(sections, function(section, i) {
 
         var subData = [];
-        var sectionId = 'scrollNav-' + (i + 1);
+        var sectionId = _.slugify(getHeadingText(section));
         var isFirst = function() { return i === 0; };
         var hasHeading = function() { return !_.is(section[0], S.settings.sections); };
         var text = ( S.settings.showTopLink && isFirst() && hasHeading() ) ? S.settings.topLinkText : getHeadingText(section);
