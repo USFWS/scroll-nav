@@ -8,6 +8,7 @@
     debounce: require('lodash.debounce'),
     defaults: require('lodash.defaults'),
     isArray: require('lodash.isArray'),
+    slugify: require('underscore.string/slugify'),
     parents: parents,
     offset: offset,
     remove: remove,
