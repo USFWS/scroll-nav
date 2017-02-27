@@ -13,6 +13,7 @@
   };
   var defaults = {
     className: 'scroll-nav',
+    fixedClassName: 'fixed',
     container: document.querySelector('.container'),
     debounceTimer: 10,
     headlineText: 'Scroll To',
@@ -84,8 +85,8 @@
     var sectionsActive     = [];
     var subSectionsActive  = [];
 
-    if ( winTop > (S.dims.navOffset - S.settings.fixedMargin) ) _.addClass(S.nav, 'fixed');
-    else _.removeClass(S.nav, 'fixed');
+    if ( winTop > (S.dims.navOffset - S.settings.fixedMargin) ) _.addClass(S.nav, S.settings.fixedClassName);
+    else _.removeClass(S.nav, S.settings.fixedClassName);
 
     var inView = function(section) {
       return (section.topOffset >= boundryTop && section.topOffset <= boundryBottom) ||
