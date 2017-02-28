@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+  require('classlist-polyfill');
 
   var scrollToElement = require('scroll-to-element');
   var _ = require('./util');
@@ -49,12 +50,14 @@
     window.addEventListener('scroll', _.debounce(checkPos, S.settings.debounceTimer));
     window.addEventListener('resize', resizeHandler);
     S.nav.addEventListener('click', scrollToSection);
+    S.nav.addEventListener('click', toggleOpen);
   }
 
   function removeHandlers() {
     window.removeEventListener('scroll', _.debounce(checkPos, S.settings.debounceTimer));
     window.removeEventListener('resize', resizeHandler);
     S.nav.removeEventListener('click', scrollToSection);
+    S.nav.removeEventListener('click', toggleOpen);
     tearDownSections(S.sections.data);
   }
 
@@ -329,6 +332,11 @@
         _.removeClass(body, S.classes.loading);
         _.addClass(bodyS.classes.failed);
       }
+    }
+
+    function toggleOpen() {
+      if ( S.nav.classList.contains('open') ) S.nav.classList.remove('open');
+      else S.nav.classList.add('open');
     }
 
     module.exports.init = init;
