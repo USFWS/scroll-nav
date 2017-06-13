@@ -289,7 +289,7 @@
       _.each(sections, function(section, i) {
 
         var subData = [];
-        var sectionId = _.slugify(getHeadingText(section));
+        var sectionId = _.slugify(getHeadingText(section)) + '-section';
         var isFirst = function() { return i === 0; };
         var hasHeading = function() { return !_.is(section[0], S.settings.sections); };
         var text = ( S.settings.showTopLink && isFirst() && hasHeading() ) ? S.settings.topLinkText : getHeadingText(section);
