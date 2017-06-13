@@ -201,7 +201,6 @@
     var headline = _.create('span', S.settings.className + '__heading');
     var wrapper  = _.create('div', S.settings.className + '__wrapper');
     var nav      = _.create('nav', S.settings.className);
-    nav.setAttribute('role', 'navigation');
     headline.innerHTML = S.settings.headlineText;
 
     _.each(sections, function(section, i) {
