@@ -10,6 +10,7 @@
     "test": "karma start",
     "browserify": "browserify src/index.js --standalone Scrollnav | derequire | uglifyjs -mc > dist/scroll-nav.js",
     "watchify": "watchify src/index.js -o dist/scroll-nav.js -dv",
+    "start": "npm run watchify",
     "build": "npm run browserify",
     "inspect": "browserify --full-paths src/index.js | uglifyjs -mc | Discify --open"
   },

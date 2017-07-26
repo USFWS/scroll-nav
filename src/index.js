@@ -23,6 +23,8 @@
     sectionElem: 'section',
     showHeadline: true,
     subSections: true,
+    backToTopLink: true,
+    backToTopText: 'Back to Top',
     fixedMargin: 40,
     scrollOffset: 40
   };
@@ -223,6 +225,12 @@
         });
       }
     });
+    if (S.settings.backToTopLink) {
+      var backToTopItem = _.create('li', S.settings.className + '__item');
+      var backToTopLink = _.create('a', S.settings.className + '__link', backToTopItem);
+      var firstLink = subNavList.querySelector('li');
+      subNavList.insertBefore(backToTopItem, firstLink);
+    }
     if (S.settings.showHeadline) {
       wrapper.appendChild(headline);
       wrapper.appendChild(navList);
