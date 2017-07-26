@@ -229,7 +229,7 @@
       var backToTopItem = _.create('li', S.settings.className + '__item');
       var backToTopLink = _.create('a', S.settings.className + '__link', backToTopItem);
       var firstLink = navList.querySelector('li');
-      backtoTopLink.textContent = S.settings.backToTopText;
+      backToTopLink.textContent = S.settings.backToTopText;
       navList.insertBefore(backToTopItem, firstLink);
     }
     if (S.settings.showHeadline) {
