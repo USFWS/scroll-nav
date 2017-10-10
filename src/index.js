@@ -148,14 +148,14 @@
       if (i === 0) {
         target = S.nav.querySelector('a[href="#' + this.id + '"]');
         parents = _.parents(target, S.settings.className + '__sub-item');
-        _each(parents, function (parent) {
+        _.each(parents, function (parent) {
           _.addClass(parent, 'active');
           _.addClass(parent, 'in-view');
         });
       } else {
         target = S.nav.querySelector('a[href="#' + this.id + '"]');
         parents = _.parents(S.settings.className + '__sub-item');
-        _each(parents, function (parent) {
+        _.each(parents, function (parent) {
           _.addClass(parent, 'in-view');
         });
       }
