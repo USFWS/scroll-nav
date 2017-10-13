@@ -1,6 +1,6 @@
 {
   "name": "fws-scrollnav",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "description": "A sub navigation component generated from page content.",
   "main": "dist/scroll-nav.js",
   "watch": {
