@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   // Polyfill node.matches() -> https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
@@ -47,26 +47,25 @@
 
   function parents(els, filter) {
     var allParents = [];
-    if ( !_.isArray(els) ) els = [els];
-    _.each(els, function (el) {
-      if ( _.hasClass(el.parentNode, filter) )
-        allParents.push(el.parentNode);
+    if (!_.isArray(els)) els = [els];
+    _.each(els, function(el) {
+      if (_.hasClass(el.parentNode, filter)) allParents.push(el.parentNode);
     });
     return allParents;
   }
 
   function is(nodeList, selector) {
-    [].some.call(nodeList, function (node) {
-        return node.matches(selector);
+    [].some.call(nodeList, function(node) {
+      return node.matches(selector);
     });
   }
 
   function nextUntil(el, untilEl) {
     var next = [],
-        until = true;
+      until = true;
 
-    while (el = el.nextElementSibling) {
-      (until && el && !el.matches(untilEl)) ? next.push(el) : until = false;
+    while ((el = el.nextElementSibling)) {
+      until && el && !el.matches(untilEl) ? next.push(el) : (until = false);
     }
     return next;
   }
@@ -80,10 +79,13 @@
   function wrapAll(options) {
     var wrapper = document.createElement(options.wrapEl);
     wrapper.setAttribute('id', options.id);
-    wrapper.setAttribute('aria-labelledby', options.id.replace('-section', ''));
+    wrapper.setAttribute(
+      'aria-labelledby',
+      options.id.replace('-section', '').replace('.', '')
+    );
     addClass(wrapper, options.class);
     options.elms[0].parentNode.appendChild(wrapper);
-    _.each(options.elms, function (el) {
+    _.each(options.elms, function(el) {
       wrapper.appendChild(el);
     });
 
@@ -94,7 +96,10 @@
     if (el.classList !== undefined) {
       el.classList.remove(name);
     } else {
-      setClass(el, trim((' ' + getClass(el) + ' ').replace(' ' + name + ' ', ' ')));
+      setClass(
+        el,
+        trim((' ' + getClass(el) + ' ').replace(' ' + name + ' ', ' '))
+      );
     }
   }
 
@@ -110,7 +115,10 @@
       return el.classList.contains(name);
     }
     var className = getClass(el);
-    return className.length > 0 && new RegExp('(^|\\s)' + name + '(\\s|$)').test(className);
+    return (
+      className.length > 0 &&
+      new RegExp('(^|\\s)' + name + '(\\s|$)').test(className)
+    );
   }
 
   function splitWords(str) {
@@ -143,11 +151,12 @@
   }
 
   function getClass(el) {
-    return el.className.baseVal === undefined ? el.className : el.className.baseVal;
+    return el.className.baseVal === undefined
+      ? el.className
+      : el.className.baseVal;
   }
 
   function create(tagName, className, container) {
-
     var el = document.createElement(tagName);
     el.className = className;
 
@@ -160,24 +169,24 @@
 
   function getWindowSize() {
     var docEl = document.documentElement,
-        IS_BODY_ACTING_ROOT = docEl && docEl.clientHeight === 0,
-        b = document.body;
+      IS_BODY_ACTING_ROOT = docEl && docEl.clientHeight === 0,
+      b = document.body;
 
     // Used to feature test Opera returning wrong values
     // for documentElement.clientHeight.
 
     function isDocumentElementHeightOff() {
       var d = document,
-          div = d.createElement('div'),
-          r;
-      div.style.height = "50000px";
+        div = d.createElement('div'),
+        r;
+      div.style.height = '50000px';
       d.body.insertBefore(div, d.body.firstChild);
       r = d.documentElement.clientHeight > 49000;
       d.body.removeChild(div);
       return r;
     }
 
-    if (typeof document.clientWidth === "number") {
+    if (typeof document.clientWidth === 'number') {
       return {
         width: document.clientWidth,
         height: document.clientHeight
@@ -197,9 +206,8 @@
 
   function offset(el) {
     var rect = el.getBoundingClientRect(),
-    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
   }
-
 })();
