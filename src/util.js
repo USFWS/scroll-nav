@@ -78,11 +78,9 @@
 
   function wrapAll(options) {
     var wrapper = document.createElement(options.wrapEl);
+    var heading = options.id.replace('.', '').replace(/-section$/, '');
     wrapper.setAttribute('id', options.id);
-    wrapper.setAttribute(
-      'aria-labelledby',
-      options.id.replace('-section', '').replace('.', '')
-    );
+    wrapper.setAttribute('aria-labelledby', heading);
     addClass(wrapper, options.class);
     options.elms[0].parentNode.appendChild(wrapper);
     _.each(options.elms, function(el) {
