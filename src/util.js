@@ -78,7 +78,8 @@
 
   function wrapAll(options) {
     var wrapper = document.createElement(options.wrapEl);
-    var heading = options.id.replace('.', '').replace(/-section$/, '');
+    var heading = options.id.replace('.', '');
+    heading = heading.replace(/-section$/, '');
     wrapper.setAttribute('id', options.id);
     wrapper.setAttribute('aria-labelledby', heading);
     addClass(wrapper, options.class);
