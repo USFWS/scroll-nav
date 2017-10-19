@@ -78,7 +78,7 @@
 
   function wrapAll(options) {
     var wrapper = document.createElement(options.wrapEl);
-    var heading = options.id.replace('.', '');
+    var heading = slugify(options.id);
     heading = heading.replace(/-section$/, '');
     wrapper.setAttribute('id', options.id);
     wrapper.setAttribute('aria-labelledby', heading);
